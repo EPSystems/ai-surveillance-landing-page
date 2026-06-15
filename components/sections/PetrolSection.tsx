@@ -32,7 +32,8 @@ function CountUpStat() {
 
   return (
     <p className="font-display text-[clamp(4.5rem,9vw,7rem)] font-black leading-none text-accent">
-      до <span ref={ref}>70</span>{" "}%<span aria-hidden="true">*</span>
+      до <span ref={ref}>70</span>
+      {" "}%<span aria-hidden="true"></span>
     </p>
   );
 }
@@ -82,7 +83,7 @@ function DetectionMockup() {
         {/* Alert bar */}
         <div className="absolute inset-x-0 bottom-0 z-10 flex items-center gap-2 border-t border-alert/40 bg-black/75 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-alert">
           <TriangleAlert size={13} strokeWidth={2} />
-          Известен drive-off — сигнал изпратен
+          Известен drive-off нарушител — сигнал изпратен
           <span className="animate-blink ml-auto h-1.5 w-1.5 bg-alert" />
         </div>
       </div>
@@ -92,7 +93,10 @@ function DetectionMockup() {
 
 export function PetrolSection() {
   return (
-    <section id="petrol-stations" className="border-t border-edge py-20 md:py-28">
+    <section
+      id="petrol-stations"
+      className="border-t border-edge py-20 md:py-28"
+    >
       <div className="container">
         <SectionMarker index="03" label="Бензиностанции" />
         <h2 className="mt-5 max-w-3xl font-display text-4xl font-black uppercase leading-[1.02] tracking-tight md:text-6xl">
@@ -116,8 +120,13 @@ export function PetrolSection() {
 
             <ul className="mt-9 space-y-4 border-t border-edge pt-8">
               {anprSteps.map((step, i) => (
-                <li key={step} className="flex gap-4 leading-relaxed text-ink-secondary">
-                  <span className="font-mono text-sm font-bold text-accent">0{i + 1}</span>
+                <li
+                  key={step}
+                  className="flex gap-4 leading-relaxed text-ink-secondary"
+                >
+                  <span className="font-mono text-sm font-bold text-accent">
+                    0{i + 1}
+                  </span>
                   {step}
                 </li>
               ))}
@@ -144,8 +153,8 @@ export function PetrolSection() {
         </div>
 
         <p className="mt-12 max-w-3xl text-xs leading-relaxed text-ink-secondary">
-          * На база международни внедрявания на ANPR системи за превенция на drive-off кражби.
-          Резултатите варират според конфигурацията на обекта.
+          * На база международни внедрявания на ANPR системи за превенция на
+          drive-off кражби. Резултатите варират според конфигурацията на обекта.
         </p>
       </div>
     </section>
