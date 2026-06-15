@@ -32,7 +32,7 @@ function CountUpStat() {
 
   return (
     <p className="font-display text-[clamp(4.5rem,9vw,7rem)] font-black leading-none text-accent">
-      до <span ref={ref}>70</span>&hairsp;%<span aria-hidden="true">*</span>
+      до <span ref={ref}>70</span>{" "}%<span aria-hidden="true">*</span>
     </p>
   );
 }
