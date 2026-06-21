@@ -9,7 +9,7 @@ import { DetectionFrame } from "@/components/ui/DetectionFrame";
 const TRUST_ITEMS = [
   "Работи със съществуващите камери",
   "GDPR съвместимо",
-  "Без нов хардуер",
+  "Без подмяна на камери",
   "Отказ по всяко време",
 ];
 
@@ -64,7 +64,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.16 }}
           className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-secondary"
         >
-          AI видеоанализ, който работи с камерите, които вече имате. Без подмяна на хардуер.
+          AI видеоанализ, който работи с камерите, които вече имате. Без подмяна на камери.
           Без лиценз за охранителна дейност. Отказ по всяко време.
         </motion.p>
 

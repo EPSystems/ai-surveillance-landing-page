@@ -34,7 +34,7 @@ export function WhiteLabelSection() {
   return (
     <section id="security-firms" className="border-t border-edge bg-surface-raised py-20 md:py-28">
       <div className="container">
-        <SectionMarker index="04" label="White-label" />
+        <SectionMarker index="05" label="White-label" />
         <h2 className="mt-5 max-w-4xl font-display text-4xl font-black uppercase leading-[1.02] tracking-tight md:text-6xl">
           Вашият бранд. Нашият AI.{" "}
           <span className="text-accent">Клиентите ви няма да усетят разликата.</span>

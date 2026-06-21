@@ -84,7 +84,7 @@ export function ContactSection() {
   return (
     <section id="contact" className="border-t border-edge bg-surface-raised py-20 md:py-28">
       <div className="container">
-        <SectionMarker index="08" label="Контакт" />
+        <SectionMarker index="09" label="Контакт" />
         <h2
           id="contact-heading"
           className="mt-5 max-w-3xl font-display text-4xl font-black uppercase leading-[1.02] tracking-tight md:text-6xl"

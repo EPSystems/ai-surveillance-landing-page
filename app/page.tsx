@@ -9,6 +9,7 @@ import { PricingSection } from "@/components/sections/PricingSection";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { TrustSection } from "@/components/sections/TrustSection";
 import { WhiteLabelSection } from "@/components/sections/WhiteLabelSection";
+import { WhoItsForSection } from "@/components/sections/WhoItsForSection";
 import { BRAND } from "@/lib/site";
 
 export const dynamic = "force-static";
@@ -47,6 +48,7 @@ export default function Page() {
         <Hero />
         <ProblemSection />
         <HowItWorks />
+        <WhoItsForSection />
         <PetrolSection />
         <WhiteLabelSection />
         <PricingSection />

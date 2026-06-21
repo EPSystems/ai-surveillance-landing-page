@@ -5,6 +5,7 @@ import { Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/Card";
 import { SectionMarker } from "@/components/ui/SectionMarker";
+import { bgnLabel } from "@/lib/currency";
 import { cn } from "@/lib/utils";
 
 type Tier = {
@@ -39,8 +40,7 @@ const directTiers: Tier[] = [
     features: [
       "Всичко от Basic",
       "ANPR / drive-off защита",
-      "Детекция на агресия",
-      "Огън и дим",
+      "Аларми извън работно време",
       "30 дни съхранение",
     ],
   },
@@ -124,6 +124,12 @@ function TierCard({
               <span className="font-display text-3xl font-black text-accent">{tier.price}</span>
               {tier.priceNote && <span className="text-sm text-ink-secondary">{tier.priceNote}</span>}
             </p>
+            {tier.unitPrice != null && (
+              <p className="text-xs text-ink-secondary">
+                {bgnLabel(tier.unitPrice)}
+                {tier.priceNote}
+              </p>
+            )}
           </div>
           <ul className="mt-5 space-y-2.5 border-t border-edge pt-5">
             {tier.features.map((f) => (
@@ -188,6 +194,10 @@ function Calculator({ tier }: { tier: Tier }) {
           <p>
             Ориентировъчно месечно:{" "}
             <span className="font-display text-3xl font-black text-accent">{estimate}</span>{" "}
+            <span className="text-sm">
+              ({tier.estimateFrom ? "от " : ""}
+              {bgnLabel(clamped * tier.unitPrice)})
+            </span>{" "}
             <span className="text-sm">(план {tier.name})</span>
           </p>
         ) : (
@@ -224,7 +234,7 @@ export function PricingSection() {
   return (
     <section id="pricing" className="border-t border-edge py-20 md:py-28">
       <div className="container">
-        <SectionMarker index="05" label="Цени" />
+        <SectionMarker index="06" label="Цени" />
         <h2 className="mt-5 max-w-3xl font-display text-4xl font-black uppercase leading-[1.02] tracking-tight md:text-6xl">
           Прозрачни цени. <span className="text-accent">Без изненади.</span>
         </h2>
@@ -304,6 +314,9 @@ export function PricingSection() {
         <p className="mt-10 border-t border-edge pt-6 text-sm text-ink-secondary">
           Всички цени са с включен ДДС · Без такса за инсталация · Отказ по всяко време ·
           Финалната цена се потвърждава след безплатен оглед на обекта
+        </p>
+        <p className="mt-3 text-xs text-ink-secondary">
+          Цените са в евро; левовата равностойност е по фиксирания курс 1 € = 1,95583 лв.
         </p>
 
         <Calculator tier={calcTier} />

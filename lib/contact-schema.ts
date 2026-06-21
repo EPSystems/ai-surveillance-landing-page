@@ -1,10 +1,11 @@
 import { z } from "zod";
 
-export const contactTypes = ["petrol", "business", "security", "other"] as const;
+export const contactTypes = ["petrol", "warehouse", "business", "security", "other"] as const;
 export type ContactType = (typeof contactTypes)[number];
 
 export const contactTypeLabels: Record<ContactType, string> = {
   petrol: "Собственик на бензиностанция",
+  warehouse: "Склад / логистика",
   business: "Друг бизнес",
   security: "Охранителна фирма",
   other: "Друго",

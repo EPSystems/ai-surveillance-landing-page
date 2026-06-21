@@ -9,8 +9,8 @@ import { SectionMarker } from "@/components/ui/SectionMarker";
 
 const anprSteps = [
   "Регистрационният номер се разчита още на входа на станцията.",
-  "Сверява се в реално време срещу споделен регистър на drive-off нарушители.",
-  "Незабавен сигнал към персонала, преди колонката да е активирана — с опция за pump-block интеграция.",
+  "Сверява се в реално време с вашия собствен списък със следени номера, който управлявате от таблото.",
+  "Незабавен сигнал към персонала, преди колонката да е активирана.",
 ];
 
 function CountUpStat() {
@@ -98,7 +98,7 @@ export function PetrolSection() {
       className="border-t border-edge py-20 md:py-28"
     >
       <div className="container">
-        <SectionMarker index="03" label="Бензиностанции" />
+        <SectionMarker index="04" label="Бензиностанции" />
         <h2 className="mt-5 max-w-3xl font-display text-4xl font-black uppercase leading-[1.02] tracking-tight md:text-6xl">
           Създаден за <span className="text-accent">горивния сектор</span>
         </h2>
@@ -133,7 +133,7 @@ export function PetrolSection() {
             </ul>
 
             <p className="mt-7 font-medium text-ink">
-              Работи с наличните камери на пистата — без нов хардуер.
+              Работи с наличните камери на пистата — без подмяна на камери.
             </p>
 
             <Button href="#contact" size="lg" className="mt-8">
@@ -153,8 +153,9 @@ export function PetrolSection() {
         </div>
 
         <p className="mt-12 max-w-3xl text-xs leading-relaxed text-ink-secondary">
-          * На база международни внедрявания на ANPR системи за превенция на
-          drive-off кражби. Резултатите варират според конфигурацията на обекта.
+          * Показателят е по международни внедрявания на ANPR системи за превенция
+          на drive-off кражби — това не е измерен резултат на нашата система.
+          Резултатите варират според конфигурацията на обекта.
         </p>
       </div>
     </section>

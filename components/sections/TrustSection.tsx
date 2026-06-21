@@ -21,7 +21,7 @@ export function TrustSection() {
   return (
     <section className="border-t border-edge bg-surface-raised py-20 md:py-24">
       <div className="container">
-        <SectionMarker index="06" label="Доверие" />
+        <SectionMarker index="07" label="Доверие" />
 
         <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
