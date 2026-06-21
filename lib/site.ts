@@ -4,7 +4,7 @@
  * The final product name is still TBD — change BRAND here and it propagates
  * to the navbar logo, page metadata, JSON-LD structured data and footer.
  */
-export const BRAND = "SENTINEL";
+export const BRAND = "SecureVision";
 
 export const TAGLINE = "AI видеонаблюдение за бизнеса. Работи с камерите, които вече имате.";
 

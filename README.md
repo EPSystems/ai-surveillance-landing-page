@@ -1,7 +1,7 @@
 # ai-surveillance-landing
 
 Single-page marketing site for the E&P Systems AI video-surveillance SaaS
-(brand placeholder: **SENTINEL**), targeting the Bulgarian market: direct sales
+(brand placeholder: **SecureVision**), targeting the Bulgarian market: direct sales
 to petrol stations (ANPR / drive-off prevention) and a white-label program for
 licensed security firms.
 

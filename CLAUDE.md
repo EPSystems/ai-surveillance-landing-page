@@ -5,7 +5,7 @@ Guidance for working in this repository.
 ## What this is
 
 Single-page marketing site for E&P Systems' AI video-surveillance SaaS (brand
-placeholder: **SENTINEL**), targeting the **Bulgarian market**. Two audiences:
+placeholder: **SecureVision**), targeting the **Bulgarian market**. Two audiences:
 petrol stations (ANPR / drive-off prevention) and a white-label program for
 licensed security firms. **All visible copy is in Bulgarian (Cyrillic)** —
 preserve the language when editing UI text.
