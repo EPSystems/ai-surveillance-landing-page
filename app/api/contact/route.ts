@@ -3,6 +3,8 @@ import { Resend } from "resend";
 import { contactSchema, contactTypeLabels } from "@/lib/contact-schema";
 import { BRAND, CONTACT_EMAIL } from "@/lib/site";
 
+export const runtime = "nodejs";
+
 function escapeHtml(value: string) {
   return value
     .replace(/&/g, "&amp;")
@@ -19,27 +21,33 @@ export async function POST(request: Request) {
   } catch {
     return NextResponse.json(
       { success: false, error: "Невалиден формат на заявката." },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
   const parsed = contactSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json(
-      { success: false, error: parsed.error.issues[0]?.message ?? "Невалидни данни." },
-      { status: 400 }
+      {
+        success: false,
+        error: parsed.error.issues[0]?.message ?? "Невалидни данни.",
+      },
+      { status: 400 },
     );
   }
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    console.error("RESEND_API_KEY is not set — the contact form cannot deliver email.");
+    console.error(
+      "RESEND_API_KEY is not set — the contact form cannot deliver email.",
+    );
     return NextResponse.json(
       {
         success: false,
-        error: "Услугата за съобщения не е конфигурирана. Моля, обадете се на посочения телефон.",
+        error:
+          "Услугата за съобщения не е конфигурирана. Моля, обадете се на посочения телефон.",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
@@ -51,13 +59,19 @@ export async function POST(request: Request) {
 
   const rows: Array<[string, string]> = [
     ["Име", escapeHtml(data.name)],
-    ["Телефон", `<a href="tel:${escapeHtml(data.phone)}">${escapeHtml(data.phone)}</a>`],
+    [
+      "Телефон",
+      `<a href="tel:${escapeHtml(data.phone)}">${escapeHtml(data.phone)}</a>`,
+    ],
     ["Имейл", data.email ? escapeHtml(data.email) : "—"],
     ["Тип клиент", escapeHtml(contactTypeLabels[data.type])],
     ["Брой камери", String(data.cameras)],
     ["Съобщение", data.message ? escapeHtml(data.message) : "—"],
     ["Съгласие (GDPR)", "Да"],
-    ["Получено", new Date().toLocaleString("bg-BG", { timeZone: "Europe/Sofia" })],
+    [
+      "Получено",
+      new Date().toLocaleString("bg-BG", { timeZone: "Europe/Sofia" }),
+    ],
   ];
 
   const html = `
@@ -66,20 +80,38 @@ export async function POST(request: Request) {
       ${rows
         .map(
           ([label, value]) =>
-            `<tr><td style="border:1px solid #ddd;font-weight:bold;white-space:nowrap">${label}</td><td style="border:1px solid #ddd">${value}</td></tr>`
+            `<tr><td style="border:1px solid #ddd;font-weight:bold;white-space:nowrap">${label}</td><td style="border:1px solid #ddd">${value}</td></tr>`,
         )
         .join("\n")}
     </table>`;
 
   try {
     const resend = new Resend(apiKey);
-    const result = await resend.emails.send({
-      from: `${BRAND} Landing <${from}>`,
-      to,
-      reply_to: data.email || undefined,
-      subject: `New Demo Request — ${contactTypeLabels[data.type]} — ${data.name}`,
-      html,
-    });
+    const send = async (sender: string) =>
+      resend.emails.send({
+        from: `${BRAND} Landing <${sender}>`,
+        to,
+        reply_to: data.email || undefined,
+        subject: `New Demo Request — ${contactTypeLabels[data.type]} — ${data.name}`,
+        html,
+      });
+
+    let result = await send(from);
+
+    const error =
+      result && typeof result === "object" && "error" in result ? (result as any).error : null;
+    const errorMessage =
+      error && typeof error === "object" && "message" in error ? String((error as any).message) : "";
+
+    const canFallbackToSandbox =
+      from !== "onboarding@resend.dev" &&
+      typeof errorMessage === "string" &&
+      errorMessage.toLowerCase().includes("domain") &&
+      errorMessage.toLowerCase().includes("not verified");
+
+    if (result.error && canFallbackToSandbox) {
+      result = await send("onboarding@resend.dev");
+    }
 
     if (result.error) {
       console.error("Resend rejected the email:", result.error);
@@ -94,7 +126,7 @@ export async function POST(request: Request) {
     console.error("Contact form delivery failed:", err);
     return NextResponse.json(
       { success: false, error: "Изпращането не успя. Моля, опитайте отново." },
-      { status: 502 }
+      { status: 502 },
     );
   }
 }
