@@ -6,13 +6,14 @@
  */
 export const BRAND = "SecureVision";
 
-export const TAGLINE = "AI видеонаблюдение за бизнеса. Работи с камерите, които вече имате.";
+export const TAGLINE =
+  "AI видеонаблюдение за бизнеса. Работи с камерите, които вече имате.";
 
 /** Public lead inbox; the API route honors a CONTACT_EMAIL env override. */
 export const CONTACT_EMAIL = "engineering@epsystems.org";
 
 /** Placeholder until the business line is provisioned — replace before launch. */
-export const PHONE_DISPLAY = "02 / XXX XXXX";
+export const PHONE_DISPLAY = "089 2962 810";
 
 /** Used when NEXT_PUBLIC_PLAUSIBLE_DOMAIN is not set. */
 export const PLAUSIBLE_FALLBACK_DOMAIN = "your-domain.bg";
