@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BRAND, NAV_LINKS, TAGLINE } from "@/lib/site";
 
 export function Footer() {
@@ -33,8 +34,14 @@ export function Footer() {
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-ink-secondary">
             Правна информация
           </p>
-          <p className="mt-4 text-sm text-ink-secondary">
-            © 2026 {BRAND} · GDPR · Политика за поверителност · Политика за бисквитки
+          <p className="mt-4 flex flex-wrap gap-x-3 gap-y-1 text-sm text-ink-secondary">
+            <span>© 2026 {BRAND}</span>
+            <Link href="/privacy" className="hover:text-ink transition-colors">
+              Политика за поверителност
+            </Link>
+            <Link href="/cookie-policy" className="hover:text-ink transition-colors">
+              Политика за бисквитки
+            </Link>
           </p>
           <p className="mt-4 text-xs leading-relaxed text-ink-secondary">
             Само софтуерен продукт. За доставката на софтуер не се изисква и не се притежава
